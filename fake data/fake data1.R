@@ -15,8 +15,8 @@ ind.loc=matrix(1:nloc,xdim,ydim)
 
 #parameters
 alpha=c(1,-1,0,0) #parameters for time model
-betas=c(1,-1,0) #parameters for resource selection function
-gamma.b=2
+gamma.b=2 #this comes from time model
+betas=c(-1,1,0) #parameters for resource selection function
 
 #calculate mean time and preference
 mean.time=mean.pref=matrix(NA,xdim,ydim)
@@ -53,6 +53,7 @@ for (i in 1:(nsim-1)){
   res2 = interp(x=res1[,'x'],y=res1[,'y'],z=res1[,'cum.time'],
                  xo = minx:maxx, yo = miny:maxy, 
                  linear=T, extrap = F)
+  # image(res2)
   res3=interp2xyz(res2)
   colnames(res3)[3]='cum.time'
 

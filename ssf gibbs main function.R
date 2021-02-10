@@ -1,7 +1,7 @@
-ssf_gibbs=function(time.int,gamma.b,dat,ngibbs,nburn,xmat){
+ssf_gibbs=function(dat,ngibbs,nburn,xmat){
   #get probability time
-  time.prob=dgamma(time.int,gamma.b*dat$cum.time,gamma.b)
-  log.time.prob=dgamma(time.int,gamma.b*dat$cum.time,gamma.b,log=T)
+  time.prob=dat$time.prob
+  log.time.prob=log(dat$time.prob)
   
   #things useful to calculate llk
   cond.sel=dat$selected==1
@@ -11,10 +11,10 @@ ssf_gibbs=function(time.int,gamma.b,dat,ngibbs,nburn,xmat){
   nobs=nrow(dat)
   
   #initial values
-  betas=c(0,0,0)
+  ncov=ncol(xmat)
+  betas=rep(0,ncov)
   
   #things for gibbs
-  ncov=length(betas)
   jump1=rep(1,ncov)
   accept1=rep(0,ncov)
   accept.output=50

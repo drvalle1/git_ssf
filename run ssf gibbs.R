@@ -8,17 +8,13 @@ source('ssf gibbs main function.R')
 source('ssf gibbs functions.R')
 
 setwd('U:\\GIT_models\\git_ssf\\fake data')
-dat=as.data.frame(fread('cumul_time and covs.csv'))
+dat=as.data.frame(fread('fake_data_trimmed.csv'))
 
 nomes=paste0('cov',1:3)
 xmat=data.matrix(dat[,nomes])
 
-#time model details
-time.int=4
-gamma.b=2
-
 #parameters for gibbs sampler
-ngibbs=1000
+ngibbs=10000
 nburn=ngibbs/2
 
-mod1=ssf_gibbs(time.int=time.int,gamma.b=gamma.b,dat=dat,ngibbs=ngibbs,nburn=nburn,xmat=xmat)
+mod1=ssf_gibbs(dat=dat,ngibbs=ngibbs,nburn=nburn,xmat=xmat)

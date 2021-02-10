@@ -6,3 +6,4 @@ par(mfrow=c(3,1))
 for (i in 1:3) plot(mod1$betas[,i],type='l')
 
 apply(mod1$betas,2,mean)
+apply(mod1$betas,2,quantile,c(0.025,0.975))
